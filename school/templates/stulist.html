@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+{% block title %}Student List{% endblock %}
+
+{% block main %}
+<div style="text-align: center;">
+  <h1 style="font-weight: bold;">All Students Enrolled. </h1>
+  </div>
+  <br>
+ {% for dor in dorm %}
+
+<ul class="list-group">
+  <li class="list-group-item">{{dor.author}}</li>
+
+</ul>
+
+ {% endfor %}
+
+
+	
+{% endblock %}

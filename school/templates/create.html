@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}Create Assignment{% endblock %}
+
+{% block main %}
+<div >
+	<h3>Create New Assignment. Welcome {{request.user}}!</h3>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+     <div class="input-group">
+        
+  		<span class="input-group-addon" id="basic-addon1">Title</span>
+  		{% render_field form.title class="form-control" placeholder="Enter Title" %}
+	</div>
+	<br>
+	
+	<div class="input-group">
+        
+  		<span class="input-group-addon" id="basic-addon1">question</span>
+  		{% render_field form.question class="form-control" placeholder="Enter Question" %}
+	</div>
+	<br>
+	<div class="input-group">
+        
+  		<span class="input-group-addon" id="basic-addon1">Choice 1</span>
+  		{% render_field form.ans1 class="form-control" placeholder="Enter 1 Choice" %}
+	</div>
+	<br> 
+	<div class="input-group">
+        
+  		<span class="input-group-addon" id="basic-addon1">Choice 2</span>
+  		{% render_field form.ans2 class="form-control" placeholder="Enter 2 Choice" %}
+	</div>
+	<br>
+	<div class="input-group">
+        
+  		<span class="input-group-addon" id="basic-addon1">User</span>
+  		{% render_field form.author class="form-control" %}
+  		
+	</div>
+	<br>
+
+  <div class="btn-group" role="group" aria-label="...">
+  <button type="submit" class="btn btn-default" >Submit</button>
+</div>
+    </form>
+    {% if messages %}
+  <ul class="messages alert-success">
+    {% for message in messages %}
+      <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+</div>
+<br>
+<br>
+<h3>Previously Created Assignments</h3>
+{% if dorm %}
+<div>
+{% for dor in dorm %}
+<div class="list-group">
+  <a  class="list-group-item ">
+    <h4 class="list-group-item-heading">{{dor.title}}</h4>
+    <p class="list-group-item-text">{{dor.question}}</p>
+    <br>
+    <form method="post" action="{% url 'dele' dor.title %}">
+    	{% csrf_token %}
+    <button  type="submit" class="btn btn-danger">Delete</button>
+	</form>
+  </a>
+</div>
+
+{% endfor %}
+	</div>
+	{% endif %}
+
+	
+{% endblock %}

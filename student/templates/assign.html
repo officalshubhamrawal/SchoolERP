@@ -1,0 +1,46 @@
+{% extends "base1.html" %}
+{% load widget_tweaks %}
+
+{% block title %}Student Login{% endblock %}
+
+{% block main %}
+
+ <h1>Hello! Here are your Assignments.</h1>
+{% for dor in dorm %}
+<form action="{% url 'vote' dor.id %}" method="POST">
+	{% csrf_token %}
+    <div class="panel panel-default">
+
+  <div class="panel-heading" >{{dor.title}}</div>
+  <div class="panel-body">Q. {{dor.question}}</div>
+
+
+<div class="radio">
+  <label><input type="radio" name="poll" value="option1">{{dor.ans1}}</label>
+</div>
+<div class="radio">
+  <label><input type="radio" name="poll" value="option2">{{dor.ans2}}</label>
+</div>
+<button  id="yo" type="submit" class="btn btn-info" onclick="removeElement(dor.id)">Submit</button>
+
+</div>
+ </form>
+
+{% endfor %}
+   {% if messages %}
+  <ul class="messages alert-success">
+    {% for message in messages %}
+      <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+<script>
+function removeElement(val) {
+	
+  document.getElementById("yo").style.display = "none";
+}
+</script>
+
+
+{% endblock %}

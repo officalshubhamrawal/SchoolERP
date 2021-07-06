@@ -1,0 +1,33 @@
+{% extends "base1.html" %}
+{% load widget_tweaks %}
+
+{% block title %}Student Login{% endblock %}
+
+{% block main %}
+
+    <form class="form" method="post">
+        {% csrf_token %}
+        <div class="input-group">
+        
+  <span class="input-group-addon" id="basic-addon1">@</span>
+  {% render_field form.username class="form-control" placeholder="Enter Username" %}
+
+  
+  
+</div>
+<br>
+<br>
+<div class="input-group">
+<span class="input-group-addon" id="basic-addon1">P</span>
+  {% render_field form.password class="form-control" placeholder="Enter Password" type="password" %}
+</div>
+<br>
+  {% if request.GET.next %}
+      <input type="hidden" name="next" value="{{request.GET.next}}">
+    {% endif %}
+<div class="btn-group" role="group" >
+  <button type="submit" value="Login" class="btn btn-default" >Submit</button>
+</div>
+    </form>
+
+{% endblock %}

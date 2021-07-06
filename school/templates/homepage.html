@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+
+{% block title %}Home{% endblock %}
+
+{% block main %}
+<div style="text-align: center;">
+  <h1 style="font-weight: bold;">Welcome to School Hub!</h1>
+  </div>
+  <br>
+  <div style="text-align: center;">
+  <h2>Teachers Login </h2>
+  <br>
+
+  <a style="background-color: red; padding: 10px; color: white;" href="{% url 'home' %}">Login</a>
+</div>
+  <br>
+  <br>
+<div style="text-align: center;">
+  <h2>Students Login </h2>
+  <br>
+  <a href="{% url 'stuhome' %}" style="background-color: red; padding: 10px; color: white;">Login</a>
+</div>
+
+
+	
+{% endblock %}
